@@ -133,6 +133,8 @@ Implementation Note (Memory Optimization):
 
 The assignment hints at using a byte to store values. Since the maximum square size cannot exceed the matrix dimensions (1000), and $1000 \gg 127$ is rare in random data (probability of a $128 \times 128$ block of zeros is near zero), byte storage is sufficient and reduces memory consumption by 75% compared to int.
 
+**Optimal Solution Extraction:** Unlike Problem 1, backtracking is not required. During the table construction, we maintain variables to track the maximum value found (`maxSide`) and its coordinate `(endRow, endCol)`. The optimal square is identified by the bottom-right corner `(endRow, endCol)` extending `maxSide` units upwards and to the left. The top-left corner is calculated as $(endRow - maxSide + 1, endCol - maxSide + 1)$.
+
 ### 2.2 Complexity Analysis
 
 -   **Time Complexity:** $O(M \times N)$
